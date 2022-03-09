@@ -13,17 +13,20 @@ public class WordcountApplication {
 	public static void main(String[] args) throws FileNotFoundException  {
 //		SpringApplication.run(WordcountApplication.class, args);
 
-		// Welcome message
-		System.out.println("File word counter");
+		// Welcome banner
+		System.out.println("\n##########   Welcome to Word Count!   ##########\n");
+		System.out.println("@Description: Returns a list of words from user specified input file, ordered by number of occurrences.");
+		System.out.println("@Author: Kieran Welch (kieranjwelch@gmail.com)");
+		System.out.println("Prepared on 09/03/2022 for an Adaptavist technical interview :)\n");
 
 		// Let's check to see if the user has run with a command line argument
 		if (args.length < 1) {
-			System.out.println("ERROR - no filename specified");
-			System.out.println("Usage: java wordcount.jar <filename>");
+			System.out.println("ERROR - no filename specified. Please try again ensuring a filename is provided.");
+			System.out.println("Usage: java -jar wordcount-<version>.jar <filename>");
 			System.exit(1);
 		}
 		else {
-			System.out.println("Filename: " + args[0]);
+			System.out.println("Scanning file: " + args[0]);
 		}
 
 		// Create hashmap which we'll use to store word counts
@@ -60,12 +63,16 @@ public class WordcountApplication {
 				.sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
 				.forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
 
+		// Start of report output
+		System.out.println("\n= Start of results =\n");
+
 		for (Map.Entry<String, Integer> entry : sortedMap.entrySet()) {
 			// Print a line for each entry in the map to return our results
-			System.out.println(entry);
+			System.out.println(entry.getKey()+": "+entry.getValue());
 		}
-		System.out.println("End of results");
-		//System.out.println("Map contents : " + map);
+		// Finished, exit gracefully
+		System.out.println("\n= End of results =");
+		System.exit(0);
 	}
 
 }

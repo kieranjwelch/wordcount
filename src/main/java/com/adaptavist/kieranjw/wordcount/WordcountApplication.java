@@ -1,16 +1,15 @@
 package com.adaptavist.kieranjw.wordcount;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOError;
 import java.util.*;
 
 @SpringBootApplication
 public class WordcountApplication {
 
-	public static void main(String[] args) throws FileNotFoundException  {
+	public static void main(String[] args) throws IOError {
 //		SpringApplication.run(WordcountApplication.class, args);
 
 		// Welcome banner
@@ -30,7 +29,7 @@ public class WordcountApplication {
 		}
 
 		// Create hashmap which we'll use to store word counts
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		HashMap<String, Integer> map = new HashMap<>();
 
 		// Invoke the file scanner to scan the contents of our input file
 		try (Scanner inputFile = new Scanner(new FileInputStream(args[0])).useDelimiter("[ ,!?.\n\r]+")) {
